@@ -1,0 +1,81 @@
+{
+  "name": "notebook-app",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "electron/main.js",
+  "homepage": "./",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "electron": "electron .",
+    "electron-dev": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && cross-env NODE_ENV=development electron .\"",
+    "electron-build": "npm run build && electron .",
+    "dist": "npm run build && electron-builder",
+    "dist-mac": "npm run build && electron-builder --mac",
+    "dist-win": "npm run build && electron-builder --win",
+    "dist-linux": "npm run build && electron-builder --linux"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.8",
+    "@heroicons/react": "^2.2.0",
+    "@tailwindcss/postcss": "^4.1.13",
+    "autoprefixer": "^10.4.21",
+    "better-sqlite3": "^12.2.0",
+    "postcss": "^8.5.6",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "rehype-highlight": "^7.0.2",
+    "rehype-katex": "^7.0.1",
+    "rehype-stringify": "^10.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "tailwindcss": "^4.1.13",
+    "unified": "^11.0.5",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.2",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.0.0",
+    "electron": "^38.1.2",
+    "electron-builder": "^26.0.12",
+    "electron-rebuild": "^3.2.9",
+    "eslint": "^9.35.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.4.0",
+    "vite": "^7.1.6",
+    "wait-on": "^9.0.0"
+  },
+  "build": {
+    "appId": "com.notebook.app",
+    "productName": "NoteBook",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "src/database/**/*",
+      "node_modules/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}
